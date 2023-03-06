@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5VBCB2YQN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-G5VBCB2YQN');
+  </script> 
+  <script src="https://cdn.counter.dev/script.js" data-id="26de4bec-9f60-4b7f-aa35-2ca7517a3743" data-utcoffset="-6"></script>
+
+  <title>Gs | SakHub</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="navbar.css" />
+  <link href="https://unpkg.com/movement.css/movement.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e897e5d5dc.js" crossorigin="anonymous"></script>
+</head>
+
+<style>
+  html, body {
+    overflow: auto;
+  }
+  body {
+     background-color: rgb(255,240,229);
+  }
+</style>
+
+<body>
+  <div id="particles-js"></div>
+  <script src="particles.min.js"></script>
+  <script src="particles.js"></script>
+  
+  <div id="navbar"></div>
+  <script src="navbar.js"></script>
+  
+  <h1 style="color:#11172F">Games</h1>
+  <hr width="200px;">
+  <p id="list"></p>
+  
+  <script src="proxies.js" ></script>
+  <script>
+    proxies.forEach(proxy => {
+      var link = document.createElement("a")
+      link.classList.add("link")
+      link.href = `/load.html?proxy=${proxy.id}`
+      link.innerHTML = `${proxy.title} <br>`
+      document.querySelector("#list").appendChild(link)
+    })
+  </script>
+</body>
