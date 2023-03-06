@@ -33,31 +33,34 @@
   <iframe id="frame"></iframe>
   <div id="footer">
     <p id="text"></p>
+    <p>Copyright &copy; 2023 Art Class <br>
+    All games and apps are copyright their respective owners</p>
     <br> <a class="link2" href="/"><i class="fa-solid fa-house"></i> Home</a>
     <br>
   </div>
   
-  <script src="uv.bundle.js"></script>
-  <script src="uv.config.js"></script>
-  <script src="games.js"></script>
-  <script src="apps.js"></script>
-  <script src="cloak.js"></script>
-  <script src="proxies.js"></script>
-  <style>
-    body {
-       background-color: rgb(255,240,229);
-    }
-  </style>
+  <script src="./uv/uv.bundle.js"></script>
+  <script src="./uv/uv.config.js"></script>
+  <script src="./data/games.js"></script>
+  <script src="./data/apps.js"></script>
+  <script src="js/cloak.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+    new Crate({
+      server: '967446591373983804', // Art Class
+      channel: '1074366934356852896' // #〈💬〉guest-chat
+    })
+  </script>
+
   <script>
     const params = new URLSearchParams(window.location.search)
     if (params.get("game")) {
       games.forEach(game => {
         if (game.id != params.get("game")) return
         document.title = `${game.title} | Art Class`
-        navigator.serviceWorker.register('loadsw.js', {
+        navigator.serviceWorker.register('./loadsw.js', {
           scope: __uv$config.prefix
         }).then(() => {
-          document.querySelector("#frame").src = './' + __uv$config.encodeUrl(game.url);
+          document.querySelector("#frame").src = __uv$config.prefix + __uv$config.encodeUrl(game.url);
           document.querySelector("#loadingdiv")[0].remove()
           if (game.fullscreen) document.querySelector("#footer").style.display = "none"
           if (game.text) document.querySelector("#text").innerHTML = game.text
@@ -68,21 +71,21 @@
       apps.forEach(app => {
         if (app.id != params.get("app")) return
         document.title = `${app.title} | Art Class`
-        navigator.serviceWorker.register('loadsw.js', {
+        navigator.serviceWorker.register('./loadsw.js', {
           scope: __uv$config.prefix
           
         }).then(() => {
-          document.querySelector("#frame").src = './' + __uv$config.encodeUrl(app.url);
+          document.querySelector("#frame").src = __uv$config.prefix + __uv$config.encodeUrl(app.url);
           document.querySelector("#loadingdiv")[0].remove()
           if (app.fullscreen) document.querySelector("#footer").style.display = "none" 
         });
       })
     } else if (params.get('url')) {
-      navigator.serviceWorker.register('loadsw.js', {
+      navigator.serviceWorker.register('./loadsw.js', {
         scope: __uv$config.prefix
         
       }).then(() => {
-        document.querySelector("#frame").src = './' + __uv$config.encodeUrl(params.get("url"));
+        document.querySelector("#frame").src = __uv$config.prefix + __uv$config.encodeUrl(params.get("url"));
         document.querySelector("#loadingdiv")[0].remove()
       });
     }
